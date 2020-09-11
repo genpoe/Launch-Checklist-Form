@@ -4,16 +4,17 @@ window.addEventListener("load", function () {
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then(function(json) {
          const div = document.getElementById("missionTarget");
+         let index = Math.floor(Math.random()*6);
          div.innerHTML = `
             <h2>Mission Destination</h2>
             <ol>
-               <li>Name: ${json[0].name}</li>
-               <li>Diameter: ${json[0].diameter}</li>
-               <li>Star: ${json[0].star}</li>
-               <li>Distance from Earth: ${json[0].distance}</li>
-               <li>Number of Moons: ${json[0].moons}</li>
+               <li>Name: ${json[index].name}</li>
+               <li>Diameter: ${json[index].diameter}</li>
+               <li>Star: ${json[index].star}</li>
+               <li>Distance from Earth: ${json[index].distance}</li>
+               <li>Number of Moons: ${json[index].moons}</li>
             </ol>
-            <img src="${json[0].image}">
+            <img src="${json[index].image}">
          `
       })
    });
@@ -40,18 +41,24 @@ window.addEventListener("load", function () {
       let pilotStatus = document.getElementById("pilotStatus");
       let copilotStatus = document.getElementById("copilotStatus");
       pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch.`
+      pilotStatus.style.color = "green";
       copilotStatus.innerHTML = `Co-pilot ${copilotName.value} is ready for launch.`
+      copilotStatus.style.color = 'green';
 
       let fuelStatus = document.getElementById("fuelStatus");
+      fuelStatus.style.color = 'green';
       let launchBool = true;
       if (fuelLevel.value < 10000) {
          fuelStatus.innerHTML = "Fuel level too low for launch.";
+         fuelStatus.style.color = 'red';
          launchBool = false;
       }
       
       let cargoStatus = document.getElementById("cargoStatus");
+      cargoStatus.style.color = 'green';
       if (cargoMass.value > 10000) {
          cargoStatus.innerHTML = "Cargo level too high for launch."
+         cargoStatus.style.color = 'red';
          launchBool = false;
       }
       

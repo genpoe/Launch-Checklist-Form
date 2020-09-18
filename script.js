@@ -35,10 +35,12 @@ window.addEventListener("load", function () {
       } else if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
          alert("Please enter valid Fuel Level and Cargo Mass.");
          event.preventDefault();
-      } else if (typeof(pilotName.value) === "string" || typeof(copilotName.value) === "string") {
+      } else if (!isNaN(pilotName.value) || !isNaN(copilotName.value)) {
          alert("Please enter valid Pilot and Copilot names");
          event.preventDefault();
+         console.log("it runs")
       }
+      console.log(typeof(copilotName.value))
 
       let faultyItems = document.getElementById("faultyItems");
       faultyItems.style.visibility = "visible";
